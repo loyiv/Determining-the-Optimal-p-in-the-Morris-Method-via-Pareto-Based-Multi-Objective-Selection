@@ -10,11 +10,7 @@ MATLAB code for **selecting the Morris grid level `p`** using a **Pareto-based m
 
 In the Morris / Elementary Effects (EE) method, the grid level **`p`** determines the step size
 
-\[
-\Delta(p) = \frac{2}{p-1},
-\]
-
-which directly affects the estimated EE statistics (e.g., \(\mu^\*\), \(\sigma\)) and can change screening stability and interpretability.  
+which directly affects the estimated EE statistics and can change screening stability and interpretability.  
 Instead of a heuristic `p`, this repo treats **choosing `p` as a design problem** with explicit trade-offs.
 
 ---
@@ -23,21 +19,12 @@ Instead of a heuristic `p`, this repo treats **choosing `p` as a design problem*
 
 We evaluate candidate grid levels \(P=\{4,5,\dots,30\}\) under a fixed budget with repeated runs, and compute **three objectives**:
 
-1. **Ranking reproducibility** \(J_{\text{rank}}(p)\) (higher is better)  
-   - Median **Kendall’s \(\tau_b\)** between factor rankings across repeated runs.
+1. **Ranking reproducibility** 
 
-2. **Cross-\(p\) convergence** \(D_{\text{conv}}(p)\) (lower is better)  
-   - Maximum relative change of robust \(\tilde{\mu}^\*(p)\) when moving to the next candidate \(p^+\).
+2. **Cross-\(p\) convergence** 
 
-3. **Diagnostic-plane separability** \(J_{\text{sep}}(p)\) (higher is better)  
-   - Separation of factor groups in the \((\tilde{\mu}^\*, \tilde{\sigma})\) plane:
-     \[
-     J_{\text{sep}}(p) = \frac{d_{\min}(p)}{s_{\max}(p)+\varepsilon}.
-     \]
+3. **Diagnostic-plane separability**
 
-We then compute the **Pareto frontier** for \(\big(J_{\text{rank}}(p), J_{\text{sep}}(p), -D_{\text{conv}}(p)\big)\) and choose a single recommended \(p^\star\) using a deterministic rule:
-
-> **Default selection rule (paper):** enforce a convergence threshold \(\tau_{\text{conv}}\), then maximize \(J_{\text{sep}}\), and break ties by \(J_{\text{rank}}\).
 
 ---
 
@@ -106,23 +93,10 @@ Then:
 run main_select_p.m
 ```
 
-Expected high-level outputs:
-
-* Objective curves over `p`: (J_{\text{rank}}(p)), (D_{\text{conv}}(p)), (J_{\text{sep}}(p))
-* Pareto-front visualization (3D or projections)
-* ((\tilde{\mu}^*, \tilde{\sigma})) diagnostic plots for candidate `p`
-* Final chosen `p_star` (paper default budget: `p_star = 15`)
-* CSV exports via:
-
-  * `export_EE_long_csv.m`
-  * `export_viz_to_csv.m`
-
-> Output paths / filenames are controlled by `config.m`.
 
 ---
 
 
----
 
 ## References
 
