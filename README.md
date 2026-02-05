@@ -2,7 +2,7 @@
 
 MATLAB code for **selecting the Morris grid level `p`** using a **Pareto-based multi-objective** criterion, as described in the accompanying paper:
 
-> *Determining the Optimal p in the Morris Method via Pareto-Based Multi-Objective Selection* (course paper / technical report)
+> *Determining the Optimal p in the Morris Method via Pareto-Based Multi-Objective Selection*
 
 ---
 
